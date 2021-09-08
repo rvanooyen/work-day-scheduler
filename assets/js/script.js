@@ -5,9 +5,43 @@ var timeColEl;
 var getCurrentDate = function() {
     var today = moment().format("dddd MMM Do");
     currentDayEl.val = today;
-    currentDayEl.append(today);
-            
+    currentDayEl.append(today);            
 };
+
+var createTable = function() {
+    var hoursArr = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+    var containerEl = document.createElement("div");
+    var rowEl = document.createElement("div");
+    var labelEl = document.createElement("div");
+    var pEl = document.createElement("p");
+    var colEl = document.createElement("div");
+    var buttonEl = document.createElement("button");
+
+    for (i = 0; i < hoursArr.length; i++) {
+        rowEl.setAttribute("id", "rowHeading");
+        rowEl.setAttribute("class", "row");
+        labelEl.setAttribute("id", "labelTitle");
+        labelEl.setAttribute("class", "col-sm-2 hour");
+        pEl.setAttribute("p", hoursArr[i]);
+        pEl.setAttribute("val", hoursArr[i]);
+        rowEl.appendChild(pEl);
+        rowEl.appendChild(labelEl);
+        containerEl.appendChild(rowEl);
+        $("#hours-container").append(containerEl);
+
+    //   <div id = "rowEightAm" class="row">
+    //     <div id = "labelEightAm" class="col-sm-2 hour">
+    //       <p> 8:00 AM</p>
+    //     </div>
+    //     <div id = " colEightAm" class="col-sm-8">
+
+    //     </div>
+    //     <div class="col-sm-2">
+    //       <button id = "saveButtonEightAm" class = "btn">Save</button>
+    //     </div>
+    //   </div>
+    }
+}
 
 var auditTime = function() {
     // converts the hour blocks to military time
@@ -20,11 +54,11 @@ var auditTime = function() {
     
     // apply new class if task is past present or future
     if (moment().hour() > time) {
-        $(timeColEl).addClass("future");
+        $(timeColEl).addClass("past");
     } else if (moment().hour() === time) {
         $(timeColEl).addClass("present");
     } else {
-        $(timeColEl).addClass("past");
+        $(timeColEl).addClass("future");
     }
     // converts the hour blocks to military time
     timeBlockEl = $("#labelNineAm");
@@ -36,11 +70,11 @@ var auditTime = function() {
     
     // apply new class if task is past present or future
     if (moment().hour() > time) {
-        $(timeColEl).addClass("future");
+        $(timeColEl).addClass("past");
     } else if (moment().hour() === time) {
         $(timeColEl).addClass("present");
     } else {
-        $(timeColEl).addClass("past");
+        $(timeColEl).addClass("future");
     }
     // converts the hour blocks to military time
     timeBlockEl = $("#labelTenAm");
@@ -52,11 +86,11 @@ var auditTime = function() {
     
     // apply new class if task is past present or future
     if (moment().hour() > time) {
-        $(timeColEl).addClass("future");
+        $(timeColEl).addClass("past");
     } else if (moment().hour() === time) {
         $(timeColEl).addClass("present");
     } else {
-        $(timeColEl).addClass("past");
+        $(timeColEl).addClass("future");
     }
     // converts the hour blocks to military time
     timeBlockEl = $("#labelElevenAm");
@@ -68,11 +102,11 @@ var auditTime = function() {
     
     // apply new class if task is past present or future
     if (moment().hour() > time) {
-        $(timeColEl).addClass("future");
+        $(timeColEl).addClass("past");
     } else if (moment().hour() === time) {
         $(timeColEl).addClass("present");
     } else {
-        $(timeColEl).addClass("past");
+        $(timeColEl).addClass("future");
     }
     // converts the hour blocks to military time
     timeBlockEl = $("#labelTwelvePm");
@@ -84,11 +118,11 @@ var auditTime = function() {
     
     // apply new class if task is past present or future
     if (moment().hour() > time) {
-        $(timeColEl).addClass("future");
+        $(timeColEl).addClass("past");
     } else if (moment().hour() === time) {
         $(timeColEl).addClass("present");
     } else {
-        $(timeColEl).addClass("past");
+        $(timeColEl).addClass("future");
     }
     // converts the hour blocks to military time
     timeBlockEl = $("#labelOnePm");
@@ -100,11 +134,11 @@ var auditTime = function() {
     
     // apply new class if task is past present or future
     if (moment().hour() > time) {
-        $(timeColEl).addClass("future");
+        $(timeColEl).addClass("past");
     } else if (moment().hour() === time) {
         $(timeColEl).addClass("present");
     } else {
-        $(timeColEl).addClass("past");
+        $(timeColEl).addClass("future");
     }
     // converts the hour blocks to military time
     timeBlockEl = $("#labelTwoPm");
@@ -116,11 +150,11 @@ var auditTime = function() {
     
     // apply new class if task is past present or future
     if (moment().hour() > time) {
-        $(timeColEl).addClass("future");
+        $(timeColEl).addClass("past");
     } else if (moment().hour() === time) {
         $(timeColEl).addClass("present");
     } else {
-        $(timeColEl).addClass("past");
+        $(timeColEl).addClass("future");
     }// converts the hour blocks to military time
     timeBlockEl = $("#labelThreePm");
     timeColEl = $("#colThreePm");
@@ -131,11 +165,11 @@ var auditTime = function() {
     
     // apply new class if task is past present or future
     if (moment().hour() > time) {
-        $(timeColEl).addClass("future");
+        $(timeColEl).addClass("past");
     } else if (moment().hour() === time) {
         $(timeColEl).addClass("present");
     } else {
-        $(timeColEl).addClass("past");
+        $(timeColEl).addClass("future");
     }
     // converts the hour blocks to military time
     timeBlockEl = $("#labelFourPm");
@@ -147,11 +181,11 @@ var auditTime = function() {
     
     // apply new class if task is past present or future
     if (moment().hour() > time) {
-        $(timeColEl).addClass("future");
+        $(timeColEl).addClass("past");
     } else if (moment().hour() === time) {
         $(timeColEl).addClass("present");
     } else {
-        $(timeColEl).addClass("past");
+        $(timeColEl).addClass("future");
     }
     // converts the hour blocks to military time
     timeBlockEl = $("#labelFivePm");
@@ -163,15 +197,16 @@ var auditTime = function() {
     
     // apply new class if task is past present or future
     if (moment().hour() > time) {
-        $(timeColEl).addClass("future");
+        $(timeColEl).addClass("past");
     } else if (moment().hour() === time) {
         $(timeColEl).addClass("present");
     } else {
-        $(timeColEl).addClass("past");
+        $(timeColEl).addClass("future");
     }
 };
 
 getCurrentDate();
+createTable();
 auditTime();
 
 // // task text was clicked
