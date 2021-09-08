@@ -4,7 +4,7 @@ var getCurrentDate = function() {
     var today = moment().format("dddd MMM Do");
     console.log(today);
     currentDayEl.val = today;
-    currentDayEl.appendChild(today);
+    currentDayEl.append(today);
             
 };
 
