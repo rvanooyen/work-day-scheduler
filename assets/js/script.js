@@ -1,3 +1,4 @@
+var hoursArr = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 var currentDayEl = $("#currentDay");
 var timeBlockEl;
 var timeColEl;
@@ -9,205 +10,43 @@ var getCurrentDate = function() {
 };
 
 var createTable = function() {
-    var hoursArr = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
-    var containerEl = document.createElement("div");
-    var rowEl = document.createElement("div");
-    var labelEl = document.createElement("div");
-    var pEl = document.createElement("p");
-    var colEl = document.createElement("div");
-    var buttonEl = document.createElement("button");
-
     for (i = 0; i < hoursArr.length; i++) {
+        var containerEl = document.createElement("div");
+        var rowEl = document.createElement("div");
+        var labelEl = document.createElement("div");
+        var pEl = document.createElement("p");
+        var colEl = document.createElement("div");
+        var buttonEl = document.createElement("button");
         rowEl.setAttribute("id", "rowHeading");
         rowEl.setAttribute("class", "row");
         labelEl.setAttribute("id", "labelTitle");
         labelEl.setAttribute("class", "col-sm-2 hour");
+        labelEl.setAttribute("p", hoursArr[i]);
+        colEl.setAttribute("id", "colTitle");
+        // apply new class if task is past present or future
+        if (moment().hour() > hoursArr[i]) {
+            colEl.setAttribute("class", "col-sm-8 past");
+        } else if (moment().hour() === hoursArr[i]) {
+            colEl.setAttribute("class", "col-sm-8 present");
+        } else {
+            colEl.setAttribute("class", "col-sm-8 future");
+    }
         pEl.setAttribute("p", hoursArr[i]);
-        pEl.setAttribute("val", hoursArr[i]);
+        pEl.setAttribute("h1", hoursArr[i]);
+        buttonEl.setAttribute("id", "saveButton");
+        buttonEl.setAttribute("class", "btn col-sm-2");
+        // buttonEl.setAttribute();
         rowEl.appendChild(pEl);
         rowEl.appendChild(labelEl);
+        rowEl.appendChild(colEl);
+        rowEl.appendChild(buttonEl);
         containerEl.appendChild(rowEl);
-        $("#hours-container").append(containerEl);
-
-    //   <div id = "rowEightAm" class="row">
-    //     <div id = "labelEightAm" class="col-sm-2 hour">
-    //       <p> 8:00 AM</p>
-    //     </div>
-    //     <div id = " colEightAm" class="col-sm-8">
-
-    //     </div>
-    //     <div class="col-sm-2">
-    //       <button id = "saveButtonEightAm" class = "btn">Save</button>
-    //     </div>
-    //   </div>
-    }
-}
-
-var auditTime = function() {
-    // converts the hour blocks to military time
-    timeBlockEl = $("#labelEightAm");
-    timeColEl = $("#colEightAm");
-    timeBlockEl.p = "8";
-    var time = parseInt(timeBlockEl.p);
-    console.log(time);
-    console.log(moment().hour());
-    
-    // apply new class if task is past present or future
-    if (moment().hour() > time) {
-        $(timeColEl).addClass("past");
-    } else if (moment().hour() === time) {
-        $(timeColEl).addClass("present");
-    } else {
-        $(timeColEl).addClass("future");
-    }
-    // converts the hour blocks to military time
-    timeBlockEl = $("#labelNineAm");
-    timeColEl = $("#colNineAm");
-    timeBlockEl.p = "9";
-    var time = parseInt(timeBlockEl.p);
-    console.log(time);
-    console.log(moment().hour());
-    
-    // apply new class if task is past present or future
-    if (moment().hour() > time) {
-        $(timeColEl).addClass("past");
-    } else if (moment().hour() === time) {
-        $(timeColEl).addClass("present");
-    } else {
-        $(timeColEl).addClass("future");
-    }
-    // converts the hour blocks to military time
-    timeBlockEl = $("#labelTenAm");
-    timeColEl = $("#colTenAm");
-    timeBlockEl.p = "10";
-    var time = parseInt(timeBlockEl.p);
-    console.log(time);
-    console.log(moment().hour());
-    
-    // apply new class if task is past present or future
-    if (moment().hour() > time) {
-        $(timeColEl).addClass("past");
-    } else if (moment().hour() === time) {
-        $(timeColEl).addClass("present");
-    } else {
-        $(timeColEl).addClass("future");
-    }
-    // converts the hour blocks to military time
-    timeBlockEl = $("#labelElevenAm");
-    timeColEl = $("#colElevenAm");
-    timeBlockEl.p = "11";
-    var time = parseInt(timeBlockEl.p);
-    console.log(time);
-    console.log(moment().hour());
-    
-    // apply new class if task is past present or future
-    if (moment().hour() > time) {
-        $(timeColEl).addClass("past");
-    } else if (moment().hour() === time) {
-        $(timeColEl).addClass("present");
-    } else {
-        $(timeColEl).addClass("future");
-    }
-    // converts the hour blocks to military time
-    timeBlockEl = $("#labelTwelvePm");
-    timeColEl = $("#colTwelvePm");
-    timeBlockEl.p = "12";
-    var time = parseInt(timeBlockEl.p);
-    console.log(time);
-    console.log(moment().hour());
-    
-    // apply new class if task is past present or future
-    if (moment().hour() > time) {
-        $(timeColEl).addClass("past");
-    } else if (moment().hour() === time) {
-        $(timeColEl).addClass("present");
-    } else {
-        $(timeColEl).addClass("future");
-    }
-    // converts the hour blocks to military time
-    timeBlockEl = $("#labelOnePm");
-    timeColEl = $("#colOnePm");
-    timeBlockEl.p = "13";
-    var time = parseInt(timeBlockEl.p);
-    console.log(time);
-    console.log(moment().hour());
-    
-    // apply new class if task is past present or future
-    if (moment().hour() > time) {
-        $(timeColEl).addClass("past");
-    } else if (moment().hour() === time) {
-        $(timeColEl).addClass("present");
-    } else {
-        $(timeColEl).addClass("future");
-    }
-    // converts the hour blocks to military time
-    timeBlockEl = $("#labelTwoPm");
-    timeColEl = $("#colTwoPm");
-    timeBlockEl.p = "14";
-    var time = parseInt(timeBlockEl.p);
-    console.log(time);
-    console.log(moment().hour());
-    
-    // apply new class if task is past present or future
-    if (moment().hour() > time) {
-        $(timeColEl).addClass("past");
-    } else if (moment().hour() === time) {
-        $(timeColEl).addClass("present");
-    } else {
-        $(timeColEl).addClass("future");
-    }// converts the hour blocks to military time
-    timeBlockEl = $("#labelThreePm");
-    timeColEl = $("#colThreePm");
-    timeBlockEl.p = "15";
-    var time = parseInt(timeBlockEl.p);
-    console.log(time);
-    console.log(moment().hour());
-    
-    // apply new class if task is past present or future
-    if (moment().hour() > time) {
-        $(timeColEl).addClass("past");
-    } else if (moment().hour() === time) {
-        $(timeColEl).addClass("present");
-    } else {
-        $(timeColEl).addClass("future");
-    }
-    // converts the hour blocks to military time
-    timeBlockEl = $("#labelFourPm");
-    timeColEl = $("#colFourPm");
-    timeBlockEl.p = "16";
-    var time = parseInt(timeBlockEl.p);
-    console.log(time);
-    console.log(moment().hour());
-    
-    // apply new class if task is past present or future
-    if (moment().hour() > time) {
-        $(timeColEl).addClass("past");
-    } else if (moment().hour() === time) {
-        $(timeColEl).addClass("present");
-    } else {
-        $(timeColEl).addClass("future");
-    }
-    // converts the hour blocks to military time
-    timeBlockEl = $("#labelFivePm");
-    timeColEl = $("#colFivePm");
-    timeBlockEl.p = "17";
-    var time = parseInt(timeBlockEl.p);
-    console.log(time);
-    console.log(moment().hour());
-    
-    // apply new class if task is past present or future
-    if (moment().hour() > time) {
-        $(timeColEl).addClass("past");
-    } else if (moment().hour() === time) {
-        $(timeColEl).addClass("present");
-    } else {
-        $(timeColEl).addClass("future");
+        $("#hours-container").append(containerEl);        
     }
 };
 
 getCurrentDate();
 createTable();
-auditTime();
 
 // // task text was clicked
 // $(".list-group").on("click", "p", function() {
