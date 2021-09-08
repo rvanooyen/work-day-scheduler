@@ -23,6 +23,7 @@ var createTable = function() {
         labelEl.setAttribute("class", "col-sm-2 hour");
         labelEl.setAttribute("p", hoursArr[i]);
         colEl.setAttribute("id", "colTitle");
+
         // apply new class if task is past present or future
         if (moment().hour() > hoursArr[i]) {
             colEl.setAttribute("class", "col-sm-8 past");
@@ -30,13 +31,15 @@ var createTable = function() {
             colEl.setAttribute("class", "col-sm-8 present");
         } else {
             colEl.setAttribute("class", "col-sm-8 future");
-    }
-        pEl.setAttribute("p", hoursArr[i]);
-        pEl.setAttribute("h1", hoursArr[i]);
+        }
+        if (hoursArr[i] < 12) {
+            labelEl.textContent = moment().hour(hoursArr[i]).format("h") + ":00 AM";
+        } else {
+            labelEl.textContent = moment().hour(hoursArr[i]).format("h") + ":00 PM";
+        }               
         buttonEl.setAttribute("id", "saveButton");
         buttonEl.setAttribute("class", "btn col-sm-2");
         // buttonEl.setAttribute();
-        rowEl.appendChild(pEl);
         rowEl.appendChild(labelEl);
         rowEl.appendChild(colEl);
         rowEl.appendChild(buttonEl);
@@ -45,32 +48,46 @@ var createTable = function() {
     }
 };
 
+var auditTime = function() {       
+    for (i = 0; i < hoursArr; i++) {
+        // remove any old classes from element
+        $(containerEl.colTitle).removeClass("past present future");
+      
+        // apply new class if time is past, present, or future
+        if (moment().hour() > hoursArr[i]) {
+            $("#hours-container").colTitle.addClass("past");
+        } else if (moment().hour() === hoursArr[i]) {
+            $("#hours-container").colTitle.addClass("present");
+        } else {
+            $("#hours-container").colTitle.addClass("future");
+        }
+    }        
+};
+
+// user clicks on time columns
+$("#hours-container").on("click", "p", function() {
+    var pEl = "";
+
+    // get current text of p element
+    var text = "";
+   
+    // replace p element with a new textarea
+    var textInput = $("<textarea>").addClass("textarea").val(text);
+    $(this).replaceWith(textInput);
+  
+    // auto focus new element
+    textInput.trigger("focus");
+  });
+
 getCurrentDate();
 createTable();
 
-// // task text was clicked
-// $(".list-group").on("click", "p", function() {
-//     // get current text of p element
-//     var text = $(this)
-//       .text()
-//       .trim();
-  
-//     // replace p element with a new textarea
-//     var textInput = $("<textarea>").addClass("form-control").val(text);
-//     $(this).replaceWith(textInput);
-  
-//     // auto focus new element
-//     textInput.trigger("focus");
-//   });
-
-
-      
-//     
-  
-//     // remove any old classes from element
-//     $(taskEl).removeClass("list-group-item-warning list-group-item-danger");
-  
-
+// audit time table every hour
+setInterval(function() {
+    $("#hours-container").each(function() {
+        auditTime();
+    });
+}, 3600000);
 
 // var saveTasks = function() {
 //     localStorage.setItem("tasks", JSON.stringify(tasks));
