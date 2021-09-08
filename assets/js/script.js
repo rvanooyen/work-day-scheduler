@@ -13,7 +13,7 @@ var auditTime = function() {
     // converts the hour blocks to military time
     timeBlockEl = $("#labelEightAm");
     timeColEl = $("#colEightAm");
-    timeBlockEl.p = "23";
+    timeBlockEl.p = "8";
     var time = parseInt(timeBlockEl.p);
     console.log(time);
     console.log(moment().hour());
