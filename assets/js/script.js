@@ -10,8 +10,7 @@ var getCurrentDate = function() {
 };
 
 var createTable = function() {
-    for (i = 0; i < hoursArr.length; i++) {
-        var containerEl = document.createElement("div");
+    for (i = 0; i < hoursArr.length; i++) {       
         var rowEl = document.createElement("div");
         var labelEl = document.createElement("div");
         var pEl = document.createElement("p");
@@ -42,9 +41,8 @@ var createTable = function() {
         // buttonEl.setAttribute();
         rowEl.appendChild(labelEl);
         rowEl.appendChild(colEl);
-        rowEl.appendChild(buttonEl);
-        containerEl.appendChild(rowEl);
-        $("#hours-container").append(containerEl);        
+        rowEl.appendChild(buttonEl);        
+        $("#hours-container").append(rowEl);        
     }
 };
 
@@ -65,19 +63,18 @@ var auditTime = function() {
 };
 
 // user clicks on time columns
-$("#hours-container").on("click", "p", function() {
-    var pEl = "";
-
+$("#hours-container").on("click", ".row", function() {    
+    var textInputEl = document.createElement("textarea");
+    var rowEl = $("#hours-container").row;
+    $("#hours-container").append(textInputEl);
+        
     // get current text of p element
     var text = "";
    
-    // replace p element with a new textarea
-    var textInput = $("<textarea>").addClass("textarea").val(text);
-    $(this).replaceWith(textInput);
-  
-    // auto focus new element
-    textInput.trigger("focus");
-  });
+    var textInput = textInputEl.value;
+    console.log(textInput);    
+    console.log(this);    
+});
 
 getCurrentDate();
 createTable();
@@ -105,10 +102,7 @@ setInterval(function() {
   
 //     // append span and p element to parent li
 //     taskLi.append(taskSpan, taskP);
-  
-//     // check due date
-//     auditTask(taskLi);
-  
+    
 //     // append to ul list on the page
 //     $("#list-" + taskList).append(taskLi);
 //   };
@@ -138,6 +132,3 @@ setInterval(function() {
 //   var saveTasks = function() {
 //     localStorage.setItem("tasks", JSON.stringify(tasks));
 //   };
-
-// // convert to moment object at 5:00pm
-// var time = moment(date, "L").set("hour", 17);
