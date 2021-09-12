@@ -1,1 +1,7 @@
-# Work Day Scheduler Starter Code
+# Work Day Scheduler 
+
+** A user opens the scheduler **
+** An hourly schedule opens up for the current day **
+** The hours status change from past to present to future depending on the current time **
+
+
