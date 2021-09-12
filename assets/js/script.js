@@ -13,7 +13,6 @@ var createTable = function() {
     for (i = 0; i < hoursArr.length; i++) {       
         var rowEl = document.createElement("div");
         var labelEl = document.createElement("div");
-        var pEl = document.createElement("p");
         var colEl = document.createElement("div");
         var buttonEl = document.createElement("button");
         rowEl.setAttribute("id", "rowHeading");
@@ -22,6 +21,9 @@ var createTable = function() {
         labelEl.setAttribute("class", "col-sm-2 hour");
         labelEl.setAttribute("p", hoursArr[i]);
         colEl.setAttribute("id", "colTitle");
+        var textInputEl = document.createElement("textarea");
+        textInputEl.setAttribute("style", "dispaly:none");
+        colEl.append(textInputEl);        
 
         // apply new class if task is past present or future
         if (moment().hour() > hoursArr[i]) {
@@ -63,16 +65,13 @@ var auditTime = function() {
 };
 
 // user clicks on time columns
-$("#hours-container").on("click", ".row", function() {    
-    var textInputEl = document.createElement("textarea");
-    var rowEl = $("#hours-container").row;
-    $("#hours-container").append(textInputEl);
-        
+$("#hours-container").on("click", ".row", function(event) {        
     // get current text of p element
     var text = "";
+    console.log(event);
    
-    var textInput = textInputEl.value;
-    console.log(textInput);    
+    // var textInput = textInputEl.value;
+    // console.log(textInput);    
     console.log(this);    
 });
 
@@ -85,50 +84,3 @@ setInterval(function() {
         auditTime();
     });
 }, 3600000);
-
-// var saveTasks = function() {
-//     localStorage.setItem("tasks", JSON.stringify(tasks));
-//   };
-
-// var createTask = function(taskText, taskDate, taskList) {
-//     // create elements that make up a task item
-//     var taskLi = $("<li>").addClass("list-group-item");
-//     var taskSpan = $("<span>")
-//       .addClass("badge badge-primary badge-pill")
-//       .text(taskDate);
-//     var taskP = $("<p>")
-//       .addClass("m-1")
-//       .text(taskText);
-  
-//     // append span and p element to parent li
-//     taskLi.append(taskSpan, taskP);
-    
-//     // append to ul list on the page
-//     $("#list-" + taskList).append(taskLi);
-//   };
-  
-//   var loadTasks = function() {
-//     tasks = JSON.parse(localStorage.getItem("tasks"));
-  
-//     // if nothing in localStorage, create a new object to track all task status arrays
-//     if (!tasks) {
-//       tasks = {
-//         toDo: [],
-//         inProgress: [],
-//         inReview: [],
-//         done: []
-//       };
-//     }
-  
-//     // loop over object properties
-//     $.each(tasks, function(list, arr) {
-//       // then loop over sub-array
-//       arr.forEach(function(task) {
-//         createTask(task.text, task.date, list);
-//       });
-//     });
-//   };
-  
-//   var saveTasks = function() {
-//     localStorage.setItem("tasks", JSON.stringify(tasks));
-//   };
